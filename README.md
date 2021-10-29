@@ -7,7 +7,7 @@ A feline provider for displaying ALE diagnostics for the [feline.nvim plugin](ht
 ## Requirements
 
 + [Feline.nvim](https://github.com/famiu/feline.nvim)
-+ [ALE](https://github.com/dense-analyses/ale)
++ [ALE](https://github.com/dense-analysis/ale)
 + [NerdFonts](https://www.nerdfonts.com/) of your choice
 + [Neovim 0.5 and up](https://github.com/neovim/neovim/tree/v0.5.1)
 
@@ -16,6 +16,7 @@ A feline provider for displaying ALE diagnostics for the [feline.nvim plugin](ht
 With packer.nvim, add it to the `requires` field in your feline setup:
 
 ```lua
+use 'dense-analysis/ale'
 use {
   'famiu/feline.nvim',
   -- tag = 'v0.3.0',
@@ -26,6 +27,7 @@ use {
 With vim-plug:
 
 ```vim
+Plug 'dense-analysis/ale'
 Plug 'famiu/feline.nvim'
 Plug 'creativenull/feline-ale-provider.nvim'
 ```
