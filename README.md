@@ -7,6 +7,7 @@ A feline provider for displaying ALE diagnostics for the [feline.nvim plugin](ht
 ## Requirements
 
 + [Feline.nvim](https://github.com/famiu/feline.nvim)
++ [ALE](https://github.com/dense-analyses/ale)
 + [NerdFonts](https://www.nerdfonts.com/) of your choice
 + [Neovim 0.5 and up](https://github.com/neovim/neovim/tree/v0.5.1)
 
