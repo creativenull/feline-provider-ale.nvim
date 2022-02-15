@@ -20,7 +20,7 @@ use 'dense-analysis/ale'
 use {
   'famiu/feline.nvim',
   -- tag = 'v0.3.0',
-  requires = { 'creativenull/feline-ale-provider.nvim' },
+  requires = { 'creativenull/feline-provider-ale.nvim' },
 }
 ```
 
@@ -29,7 +29,7 @@ With vim-plug:
 ```vim
 Plug 'dense-analysis/ale'
 Plug 'famiu/feline.nvim'
-Plug 'creativenull/feline-ale-provider.nvim'
+Plug 'creativenull/feline-provider-ale.nvim'
 ```
 
 ## Example
