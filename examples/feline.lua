@@ -1,12 +1,13 @@
-local ale = require 'feline.providers.ale'
-local M = {}
+local ale = require('feline.custom_providers.ale')
 
--- Active
-M.active = { {}, {}, {} }
+local components = {
+  active = { {}, {}, {} },
+  inactive = { {}, {} },
+}
 
 -- Left
 -- Active File Info {{{
-table.insert(M.active[1], {
+table.insert(components.active[1], {
   provider = {
     name = 'file_info',
     opts = { colored_icon = false },
@@ -18,7 +19,7 @@ table.insert(M.active[1], {
 -- }}}
 
 -- Active Git Branch {{{
-table.insert(M.active[1], {
+table.insert(components.active[1], {
   provider = 'git_branch',
   left_sep = 'block',
 })
@@ -34,7 +35,7 @@ table.insert(active[3], {
 
 -- Active ALE Component {{{
 table.insert(active[3], {
-  provider = ale.status_provider,
+  provider = 'ale_status',
   hl = {
     fg = '#262626',
     bg = '#ffffff',
@@ -51,7 +52,7 @@ table.insert(active[3], {
 
 -- Active ALE Error Component {{{
 table.insert(active[3], {
-  provider = ale.error_provider,
+  provider = 'ale_error',
   hl = {
     fg = '#ffffff',
     bg = '#df0000',
@@ -68,7 +69,7 @@ table.insert(active[3], {
 
 -- Active ALE Warning Component {{{
 table.insert(active[3], {
-  provider = ale.warning_provider,
+  provider = 'ale_warning',
   hl = {
     fg = '#ffffff',
     bg = '#ff8700',
@@ -76,8 +77,7 @@ table.insert(active[3], {
   left_sep = {
     str = 'slant_left',
     hl = function()
-      local is_error, _ = ale.has_errors()
-      if is_error then
+      if ale.get_diagnostic_count('error') > 0 then
         return {
           fg = '#ff8700',
           bg = '#df0000',
@@ -93,12 +93,9 @@ table.insert(active[3], {
 })
 -- }}}
 
--- Inactive
-M.inactive = { {}, {} }
-
--- Left
--- Inactive File Info {{{
-table.insert(M.inactive[1], {
+-- Inactive Left
+-- File Info {{{
+table.insert(components.inactive[1], {
   provider = {
     name = 'file_info',
     opts = { colored_icon = false },
@@ -109,12 +106,19 @@ table.insert(M.inactive[1], {
 })
 -- }}}
 
--- Right
--- Inactive File Encoding {{{
-table.insert(M.active[3], {
+-- Inactive Right
+-- File Encoding {{{
+table.insert(components.active[3], {
   provider = 'file_encoding',
   right_sep = 'block',
 })
 -- }}}
 
-return M
+require('feline').setup({
+  components = components,
+  custom_providers = {
+    ale_status = ale.status_provider,
+    ale_error = ale.diagnostic_error_provider,
+    ale_warning = ale.diagnostic_warning_provider,
+  },
+})
