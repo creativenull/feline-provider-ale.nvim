@@ -29,21 +29,21 @@ ale.status_provider()
 	    Example:
 >
 	    local components = {
-		active = { {}, {}, {} },
+	      active = { {}, {}, {} },
 	    }
 	    table.insert(components.active[1], {
-		provider = {
-		    name = 'ale_status'
-		    opts = {
-			linter_icon = '',
-		    },
-		},
+	      provider = {
+	        name = 'ale_status',
+	        opts = {
+	          linter_icon = '',
+	        },
+	      },
 	    })
 	    require('feline').setup({
-		components = components,
-		custom_providers = {
-		    ale_status = ale.status_provider,
-		},
+	      components = components,
+	      custom_providers = {
+	        ale_status = ale.status_provider,
+	      },
 	    })
 <
 
@@ -56,16 +56,16 @@ ale.diagnostic_error_provider()
 	    Example:
 >
 	    local components = {
-		active = { {}, {}, {} },
+	      active = { {}, {}, {} },
 	    }
 	    table.insert(components.active[1], {
-		provider = 'ale_error',
+	      provider = 'ale_error',
 	    })
 	    require('feline').setup({
-		components = components,
-		custom_providers = {
-		    ale_error = ale.diagnostic_error_provider,
-		},
+	      components = components,
+	      custom_providers = {
+	        ale_error = ale.diagnostic_error_provider,
+	      },
 	    })
 <
 
@@ -78,16 +78,16 @@ ale.diagnostic_warning_provider()
 	    Example:
 >
 	    local components = {
-		active = { {}, {}, {} },
+	      active = { {}, {}, {} },
 	    }
 	    table.insert(components.active[1], {
-		provider = 'ale_warning',
+	      provider = 'ale_warning',
 	    })
 	    require('feline').setup({
-		components = components,
-		custom_providers = {
-		    ale_warning = ale.diagnostic_warning_provider,
-		},
+	      components = components,
+	      custom_providers = {
+	        ale_warning = ale.diagnostic_warning_provider,
+	      },
 	    })
 <
 
@@ -100,16 +100,16 @@ ale.diagnostic_info_provider()
 	    Example:
 >
 	    local components = {
-		active = { {}, {}, {} },
+	      active = { {}, {}, {} },
 	    }
 	    table.insert(components.active[1], {
-		provider = 'ale_info',
+	      provider = 'ale_info',
 	    })
 	    require('feline').setup({
-		components = components,
-		custom_providers = {
-		    ale_info = ale.diagnostic_info_provider,
-		},
+	      components = components,
+	      custom_providers = {
+	        ale_info = ale.diagnostic_info_provider,
+	      },
 	    })
 <
 
