@@ -45,6 +45,8 @@ Plug 'creativenull/feline-provider-ale.nvim'
 
 Docs can also be found over at [`:help feline-provider-ale`](./doc/feline-provider-ale.txt).
 
+Check out the example file over in [`examples/feline.lua`](./examples/feline.lua)
+
 ### Providers
 
 There are four custom providers that come with this plugin for ALE.
