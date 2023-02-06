@@ -1,0 +1,147 @@
+INTRODUCTION                                      *feline-ale-provider*
+
+Custom provider for displaying ALE status/diagnostics for feline.nvim
+
+SETUP                                       *feline-ale-provider-setup*
+
+Import the ALE provider with the following and check the API doc below
+for implementation:
+
+>
+    local ale = require('feline.custom_providers.ale')
+<
+
+PROVIDERS                               *feline-ale-provider-providers*
+
+Assuming you've imported as `ale` a show in |feline-ale-provider-setup|.
+
+ale.status_provider()
+	    Shows the ALE status for the current buffer. Linters and
+	    fixers that are registered are also show but as an icon.
+	    Options are provided as `opts` to change the following.
+
+	    text (string): The text to display, default is 'ALE'
+	    linter_icon (string): The icon to display for linter,
+	      default is '󰓠'
+	    fixer_icon (string): The icon to display for fixer,
+	      default is '󱌢'
+
+	    Example:
+>
+	    local components = {
+		active = { {}, {}, {} },
+	    }
+	    table.insert(components.active[1], {
+		provider = {
+		    name = 'ale_status'
+		    opts = {
+			linter_icon = '',
+		    },
+		},
+	    })
+	    require('feline').setup({
+		components = components,
+		custom_providers = {
+		    ale_status = ale.status_provider,
+		},
+	    })
+<
+
+ale.diagnostic_error_provider()
+	    Shows the number of errors in the current buffer. This
+	    provider only gives you the number, it's up to you on how
+	    you want to style it, check the example lua file in
+	    `examples/feline.lua`.
+
+	    Example:
+>
+	    local components = {
+		active = { {}, {}, {} },
+	    }
+	    table.insert(components.active[1], {
+		provider = 'ale_error',
+	    })
+	    require('feline').setup({
+		components = components,
+		custom_providers = {
+		    ale_error = ale.diagnostic_error_provider,
+		},
+	    })
+<
+
+ale.diagnostic_warning_provider()
+	    Shows the number of warnings in the current buffer. This
+	    provider only gives you the number, it's up to you on how
+	    you want to style it, check the example lua file in
+	    `examples/feline.lua`.
+
+	    Example:
+>
+	    local components = {
+		active = { {}, {}, {} },
+	    }
+	    table.insert(components.active[1], {
+		provider = 'ale_warning',
+	    })
+	    require('feline').setup({
+		components = components,
+		custom_providers = {
+		    ale_warning = ale.diagnostic_warning_provider,
+		},
+	    })
+<
+
+ale.diagnostic_info_provider()
+	    Shows the number of infos in the current buffer. This
+	    provider only gives you the number, it's up to you on how
+	    you want to style it, check the example lua file in
+	    `examples/feline.lua`.
+
+	    Example:
+>
+	    local components = {
+		active = { {}, {}, {} },
+	    }
+	    table.insert(components.active[1], {
+		provider = 'ale_info',
+	    })
+	    require('feline').setup({
+		components = components,
+		custom_providers = {
+		    ale_info = ale.diagnostic_info_provider,
+		},
+	    })
+<
+
+HELPER FUNCTIONS                        *feline-ale-provider-helpers*
+
+Assuming the lua module was imported as `ale` a show in
+|feline-ale-provider-setup|.
+
+ale.is_registered()
+	Returns a boolean when an ALE linter or fixer has been setup.
+
+        Returns: ~
+            `true` if registered, else `false`.
+
+ale.has_registered_linters()
+	Returns a boolean when an ALE linter has been setup.
+
+        Returns: ~
+            `true` if registered, else `false`.
+
+ale.has_registered_fixers()
+	Returns a boolean when an ALE fixer has been setup.
+
+        Returns: ~
+            `true` if registered, else `false`.
+
+ale.get_diagnostic_count({attr})
+	Returns a count of diagnostic given an scope.
+
+	{attr} can be "error", "warning" or "info".
+
+        Returns: ~
+            number
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
