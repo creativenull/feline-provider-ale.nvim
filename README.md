@@ -68,7 +68,7 @@ require('feline').setup({
 
 Separate providers for different diagnostics.
 
-```
+```lua
 local ale = require('feline.custom_providers.ale')
 
 require('feline').setup({
