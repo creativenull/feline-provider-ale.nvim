@@ -63,14 +63,18 @@ end
 ---@return boolean
 function M.has_registered_linters()
   local buf = vim.api.nvim_get_current_buf()
-  return vim.b[buf].ale_linters ~= nil or vim.g.ale_linters ~= nil
+  local is_not_empty_global = vim.g.ale_linters ~= nil and not vim.tbl_isempty(vim.g.ale_linters)
+  local is_not_empty_local = vim.b[buf].ale_linters ~= nil and not vim.tbl_isempty(vim.b[buf].ale_linters)
+  return is_not_empty_local or is_not_empty_global
 end
 
 ---Check if buffer or global specified fixers were created
 ---@return boolean
 function M.has_registered_fixers()
   local buf = vim.api.nvim_get_current_buf()
-  return vim.b[buf].ale_fixers ~= nil or vim.g.ale_fixers ~= nil
+  local is_not_empty_global = vim.g.ale_fixers ~= nil and not vim.tbl_isempty(vim.g.ale_fixers)
+  local is_not_empty_local = vim.b[buf].ale_fixers ~= nil and not vim.tbl_isempty(vim.b[buf].ale_fixers)
+  return is_not_empty_local or is_not_empty_global
 end
 
 ---Check if either buffer specified linters or fixers were created
